@@ -1,16 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "../ui/button";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import NavMobile from "./NavMobile";
-import { auth } from "@clerk/nextjs/server";
-import { UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import PropertyDropdownMenu from "../property/PropertyDropdownMenu";
 
-export default async function Navbar() {
-  const user = await auth();
-
-  console.log("current user: ", user);
-
+export default function Navbar() {
   return (
     <nav className="container mx-auto mt-3 flex justify-around items-center">
       <Logo />
@@ -18,14 +16,14 @@ export default async function Navbar() {
         <NavLinks />
       </div>
       <div className="flex justify-center items-center gap-5">
-        {user ? (
-          <UserButton />
-        ) : (
-          <Link href={"/sign-in"}>
-            <Button>Sign in</Button>
-          </Link>
-        )}
-
+        <SignedOut>
+          <Button asChild>
+            <Link href={"/sign-in"}>Sign in</Link>
+          </Button>
+        </SignedOut>
+        <SignedIn>
+          <PropertyDropdownMenu />
+        </SignedIn>
         <NavMobile />
       </div>
     </nav>
