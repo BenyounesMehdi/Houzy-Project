@@ -17,7 +17,7 @@ import {
 
 export default function Page() {
   return (
-    <div className="container mx-auto my-10">
+    <div className="container mx-auto my-10 px-2">
       <form action="">
         <Card>
           <CardHeader>
