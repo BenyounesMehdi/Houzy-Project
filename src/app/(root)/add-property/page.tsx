@@ -7,10 +7,12 @@ import PropertyImagesUploader from "@/components/property/PropertyImagesUploader
 import PropertyTitleAndAddresFiled from "@/components/property/PropertyTitleAndAddressField";
 import PropertyTypeSelector from "@/components/property/PropertyTypeSelector";
 import TransactionTypeSelector from "@/components/property/TransactionTypeSelector";
+import SubmitButton from "@/components/shared/SubmitButton";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -39,6 +41,9 @@ export default function Page() {
             <PropertyDescriptionAndPriceAndPhoneNumberFiled />
             <PropertyImagesUploader />
           </CardContent>
+          <CardFooter className="flex justify-end">
+            <SubmitButton label="Create a property" />
+          </CardFooter>
         </Card>
       </form>
     </div>
