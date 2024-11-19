@@ -15,4 +15,27 @@ model User {
   firstName String
   lastName String
   profileImageUrl String?
+
+  Property Property[]
 }
+
+model Property {
+  id    String @id @default(uuid())
+  title String
+  address String
+  propertyType String
+  transactionType String
+  bedroomsNumber  Int
+  bathroomsNumber Int
+  squareFootage Float
+  city String
+  description String
+  price Float
+  phoneNumber String
+  images String[]
+
+  createdAt DateTime @default(now())
+  User User? @relation(fields: [userId], references: [id])
+  userId String?
+}
+
