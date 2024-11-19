@@ -18,13 +18,19 @@ import { Check, ChevronsUpDown } from "lucide-react";
 
 import cities from "../../lib/AlgeriaCities.json";
 import { cn } from "@/lib/utils";
+import ErrorMessage from "../shared/ErrorMessage";
 
-export default function CitySelector() {
+type CitySelectorError = {
+  error?: string;
+};
+
+export default function CitySelector({ error }: CitySelectorError) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
   return (
     <div className="w-full flex flex-col gap-2 mt-3">
+      <input type="hidden" name="city" value={value} />
       <Label className="text-lg">City</Label>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -69,6 +75,7 @@ export default function CitySelector() {
           </Command>
         </PopoverContent>
       </Popover>
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 }

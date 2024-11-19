@@ -1,3 +1,4 @@
+import ErrorMessage from "../shared/ErrorMessage";
 import { Label } from "../ui/label";
 import {
   Select,
@@ -9,7 +10,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function TransactionTypeSelector() {
+type TransactionTypeSelectorProps = {
+  error?: string;
+};
+
+export default function TransactionTypeSelector({
+  error,
+}: TransactionTypeSelectorProps) {
   return (
     <div className="w-full md:w-1/2 flex flex-col gap-2">
       <Label className="text-lg">Transaction type</Label>
@@ -25,6 +32,7 @@ export default function TransactionTypeSelector() {
           </SelectGroup>
         </SelectContent>
       </Select>
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 }

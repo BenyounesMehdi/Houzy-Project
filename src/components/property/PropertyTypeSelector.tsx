@@ -1,3 +1,4 @@
+import ErrorMessage from "../shared/ErrorMessage";
 import { Label } from "../ui/label";
 import {
   Select,
@@ -9,7 +10,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function PropertyTypeSelector() {
+type PropertyTypeSelectorProps = {
+  error?: string;
+};
+
+export default function PropertyTypeSelector({
+  error,
+}: PropertyTypeSelectorProps) {
   return (
     <div className="w-full md:w-1/2 flex flex-col gap-2">
       <Label className="text-lg">Property type</Label>
@@ -26,6 +33,7 @@ export default function PropertyTypeSelector() {
           </SelectGroup>
         </SelectContent>
       </Select>
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 }
