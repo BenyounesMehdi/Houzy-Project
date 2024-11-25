@@ -1,6 +1,5 @@
 "use client";
 
-import { createProperty } from "@/actions/actions";
 import CitySelector from "@/components/property/CitySelector";
 import PropertyDescriptionAndPriceAndPhoneNumberFiled from "@/components/property/PropertyDescriptionAndPriceAndPhoneNumberFiled";
 import PropertyDetailsField from "@/components/property/PropertyDetailsField";
@@ -17,7 +16,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { State } from "@/types/types";
+import { State } from "@/utils/types/types";
+import { createProperty } from "@/utils/actions/create-property";
 import { useEffect, useRef } from "react";
 import { useActionState } from "react";
 import { toast } from "sonner";
@@ -26,6 +26,7 @@ export default function Page() {
   const initialState: State = {
     status: undefined,
     message: "",
+    errors: undefined,
   };
   const [state, formAction] = useActionState(createProperty, initialState);
   const formRef = useRef<HTMLFormElement>(null);
@@ -53,36 +54,36 @@ export default function Page() {
           </CardHeader>
           <CardContent>
             <PropertyTitleAndAddresFiled
-              titleError={state?.erros?.["title"]?.[0] as string}
-              addressError={state?.erros?.["address"]?.[0] as string}
+              titleError={state?.errors?.["title"]?.[0] as string}
+              addressError={state?.errors?.["address"]?.[0] as string}
             />
             <div className="w-full flex flex-col md:flex-row justify-center items-center gap-3 mt-3">
               <PropertyTypeSelector
-                error={state?.erros?.["propertyType"]?.[0] as string}
+                error={state?.errors?.["propertyType"]?.[0] as string}
               />
               <TransactionTypeSelector
-                error={state?.erros?.["transactionType"]?.[0] as string}
+                error={state?.errors?.["transactionType"]?.[0] as string}
               />
             </div>
             <PropertyDetailsField
               bedroomsNumberError={
-                state?.erros?.["bedroomsNumber"]?.[0] as string
+                state?.errors?.["bedroomsNumber"]?.[0] as string
               }
               bathroomsNumberError={
-                state?.erros?.["bathroomsNumber"]?.[0] as string
+                state?.errors?.["bathroomsNumber"]?.[0] as string
               }
               squareFootageError={
-                state?.erros?.["squareFootage"]?.[0] as string
+                state?.errors?.["squareFootage"]?.[0] as string
               }
             />
-            <CitySelector error={state?.erros?.["city"]?.[0] as string} />
+            <CitySelector error={state?.errors?.["city"]?.[0] as string} />
             <PropertyDescriptionAndPriceAndPhoneNumberFiled
-              descriptionError={state?.erros?.["description"]?.[0] as string}
-              priceError={state?.erros?.["price"]?.[0] as string}
-              phoneNumberError={state?.erros?.["phoneNumber"]?.[0] as string}
+              descriptionError={state?.errors?.["description"]?.[0] as string}
+              priceError={state?.errors?.["price"]?.[0] as string}
+              phoneNumberError={state?.errors?.["phoneNumber"]?.[0] as string}
             />
             <PropertyImagesUploader
-              error={state?.erros?.["images"]?.[0] as string}
+              error={state?.errors?.["images"]?.[0] as string}
             />
           </CardContent>
           <CardFooter className="flex justify-end">
