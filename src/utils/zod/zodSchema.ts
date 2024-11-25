@@ -38,5 +38,5 @@ export const propertySchema = z.object({
       message:
         "Phone number must start with 05, 06, or 07 and be followed by 8 digits",
     }),
-  images: z.array(z.string(), { message: "Please, upload some images" }),
+  images: z.array(z.string()).min(1, "Please upload some images"),
 });
