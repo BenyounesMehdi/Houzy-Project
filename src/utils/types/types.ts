@@ -20,4 +20,5 @@ export type Property = {
   phoneNumber: string;
   images: string[];
   id?: string | undefined;
+  userId?: string | undefined;
 };
