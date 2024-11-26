@@ -2,7 +2,6 @@
 
 import prisma from "@/lib/db";
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import { useId } from "react";
 
 export const getUserProperties = async (userID: string) => {
   const { userId } = await auth();
