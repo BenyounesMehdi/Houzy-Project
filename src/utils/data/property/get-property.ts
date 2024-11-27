@@ -1,3 +1,5 @@
+"server-only";
+
 import prisma from "@/lib/db";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 
