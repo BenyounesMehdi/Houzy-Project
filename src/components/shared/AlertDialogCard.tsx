@@ -1,4 +1,5 @@
-// import { deleteProperty } from "@/actions/actions";
+"use client";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,27 +11,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { deleteProperty } from "@/utils/actions/delete-property";
 import { Trash2 } from "lucide-react";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
 
 type AlertDialogCardProps = {
   propertyId: string;
+  onDeleteComplete: (status: string, message: string) => void;
 };
 
-export default function AlertDialogCard({ propertyId }: AlertDialogCardProps) {
-  const [message, setMessage] = useState<string | null>(null);
+export default function AlertDialogCard({
+  propertyId,
+  onDeleteComplete,
+}: AlertDialogCardProps) {
   const handleDeleteProperty = async (propertyId: string) => {
-    // const state = await deleteProperty(propertyId);
-    // const receivedMessage = state?.message as string;
-    // setMessage(receivedMessage);
+    const state = await deleteProperty(propertyId);
+    if (state) {
+      onDeleteComplete(state.status as string, state.message as string);
+    }
   };
-
-  useEffect(() => {
-    if (message?.includes("Failed")) toast.error(message);
-    else if (message?.includes("successfully")) redirect("/my-properties");
-  }, [message]);
 
   return (
     <div>

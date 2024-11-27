@@ -3,10 +3,11 @@
 import { useState } from "react";
 import PropertyImagesCarousel from "./PropertyImagesCarousel";
 import { MapPin, Pencil, Phone } from "lucide-react";
-// import AlertDialogCard from "../shared/AlertDialogCard";
 import Link from "next/link";
 import { Property } from "@/utils/types/types";
 import { useAuth } from "@clerk/nextjs";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import AlertDialogCard from "../shared/AlertDialogCard";
 
 type PropertyOverviewProps = {
@@ -16,9 +17,21 @@ type PropertyOverviewProps = {
 export default function PropertyOverview({ property }: PropertyOverviewProps) {
   const { userId } = useAuth();
   const [showFullDescription, setShowFullDescription] = useState<boolean>(true);
+  const router = useRouter();
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
+  };
+
+  const handleDeleteComplete = (status: string, message: string) => {
+    if (status === "error") {
+      toast.error(message);
+    } else {
+      toast.success(message);
+      setTimeout(() => {
+        router.push("/my-properties");
+      }, 1000);
+    }
   };
 
   return (
@@ -34,7 +47,10 @@ export default function PropertyOverview({ property }: PropertyOverviewProps) {
                 <Pencil className="text-primary" />
               </div>
             </Link>
-            <AlertDialogCard propertyId={property.id as string} />
+            <AlertDialogCard
+              propertyId={property.id as string}
+              onDeleteComplete={handleDeleteComplete}
+            />
           </div>
         )}
       </div>
