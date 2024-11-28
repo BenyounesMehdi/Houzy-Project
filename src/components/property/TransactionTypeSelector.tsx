@@ -12,15 +12,17 @@ import {
 
 type TransactionTypeSelectorProps = {
   error?: string;
+  transactionType?: string;
 };
 
 export default function TransactionTypeSelector({
   error,
+  transactionType,
 }: TransactionTypeSelectorProps) {
   return (
     <div className="w-full md:w-1/2 flex flex-col gap-2">
       <Label className="text-lg">Transaction type</Label>
-      <Select name="transactionType">
+      <Select name="transactionType" defaultValue={transactionType}>
         <SelectTrigger>
           <SelectValue placeholder="Select a transaction type" />
         </SelectTrigger>

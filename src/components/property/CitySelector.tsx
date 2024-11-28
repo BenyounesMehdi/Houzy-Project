@@ -22,11 +22,12 @@ import ErrorMessage from "../shared/ErrorMessage";
 
 type CitySelectorError = {
   error?: string;
+  city?: string;
 };
 
-export default function CitySelector({ error }: CitySelectorError) {
+export default function CitySelector({ error, city }: CitySelectorError) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(city ? city : "");
 
   return (
     <div className="w-full flex flex-col gap-2 mt-3">

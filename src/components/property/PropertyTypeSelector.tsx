@@ -12,15 +12,17 @@ import {
 
 type PropertyTypeSelectorProps = {
   error?: string;
+  propertyType?: string;
 };
 
 export default function PropertyTypeSelector({
   error,
+  propertyType,
 }: PropertyTypeSelectorProps) {
   return (
     <div className="w-full md:w-1/2 flex flex-col gap-2">
       <Label className="text-lg">Property type</Label>
-      <Select name="propertyType">
+      <Select name="propertyType" defaultValue={propertyType}>
         <SelectTrigger>
           <SelectValue placeholder="Select a property type" />
         </SelectTrigger>
