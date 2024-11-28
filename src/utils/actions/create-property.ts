@@ -3,9 +3,8 @@
 import prisma from "@/lib/db";
 import { State } from "@/utils/types/types";
 import { propertySchema } from "@/utils/zod/zodSchema";
-import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function createProperty(
   prevState: any,
