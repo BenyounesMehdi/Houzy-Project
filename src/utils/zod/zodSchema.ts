@@ -17,13 +17,13 @@ export const propertySchema = z.object({
     .string()
     .min(1, { message: "Please, select a transaction type" }),
   bedroomsNumber: z
-    .string()
+    .number()
     .min(1, { message: "Please, set the number of the bedrooms" }),
   bathroomsNumber: z
-    .string()
+    .number()
     .min(1, { message: "Please, set the number of the bathrooms" }),
   squareFootage: z
-    .string()
+    .number()
     .min(1, { message: "Please, set the square footage" }),
   city: z.string().min(1, { message: "Please, select the city" }),
   description: z
