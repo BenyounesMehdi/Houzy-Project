@@ -28,13 +28,11 @@ export default function PropertyImagesUploader({
       <UploadButton
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
-          console.log("Upload completed:", res);
           setPropertyImages(res.map((image) => image.url));
           toast.success("Images uploaded successfully!");
         }}
         onUploadError={(e) => {
           toast.error("Something went wrong, try again.");
-          console.log(e);
         }}
       />
       {error && <ErrorMessage message={error} />}
