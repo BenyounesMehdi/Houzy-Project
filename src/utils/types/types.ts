@@ -22,3 +22,9 @@ export type Property = {
   id?: string | undefined;
   userId?: string | undefined;
 };
+
+export type Conditions = {
+  transactionType: string;
+  propertyType?: string;
+  city?: string;
+};
