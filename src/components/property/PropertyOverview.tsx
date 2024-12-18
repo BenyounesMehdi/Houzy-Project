@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PropertyImagesCarousel from "./PropertyImagesCarousel";
-import { MapPin, Pencil, Phone } from "lucide-react";
+import { Bath, Bed, MapPin, Pencil, Phone, Square } from "lucide-react";
 import Link from "next/link";
 import { Property } from "@/utils/types/types";
 import { useAuth } from "@clerk/nextjs";
@@ -98,20 +98,23 @@ export default function PropertyOverview({ property }: PropertyOverviewProps) {
           {showFullDescription && (
             <>
               <div className="flex justify-evenly items-center">
-                <div>
+                <div className="flex justify-center items-center gap-2">
                   <p className="font-semibold text-base lg:text-2xl">
-                    {property.bedroomsNumber} Beds
+                    {property.bedroomsNumber}
                   </p>
+                  <Bed />
                 </div>
-                <div>
+                <div className="flex justify-center items-center gap-2">
                   <p className="font-semibold text-base lg:text-2xl">
-                    {property.bathroomsNumber} baths
+                    {property.bathroomsNumber}
                   </p>
+                  <Bath />
                 </div>
-                <div>
+                <div className="flex justify-center items-center gap-2">
                   <p className="font-semibold text-base lg:text-2xl">
-                    {property.squareFootage} sqft
+                    {property.squareFootage}
                   </p>
+                  <Square /> sqft
                 </div>
               </div>
               <div className="flex justify-evenly items-center ">
