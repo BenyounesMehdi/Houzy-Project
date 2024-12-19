@@ -4,6 +4,8 @@ import { toast } from "sonner";
 import { Property } from "@/utils/types/types";
 import NoData from "../shared/NoData";
 import PropertyCard from "./PropertyCard";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 type FilteredPropertiesListProps = {
   transactionType: string;
@@ -16,12 +18,17 @@ export default function FilteredPropertiesList({
   propertyType,
   city,
 }: FilteredPropertiesListProps) {
-  const { data, isLoading, error } = useFilterdProperties(
-    transactionType,
-    propertyType,
-    city
-  );
-  if (isLoading) {
+  const { data, status, error, fetchNextPage, isFetchingNextPage } =
+    useFilterdProperties(transactionType, propertyType, city);
+
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    console.log("in view: ", inView);
+    if (inView) fetchNextPage();
+  }, [fetchNextPage, inView]);
+
+  if (status === "pending") {
     return (
       <div className="flex flex-col justify-center items-center h-[calc(100vh-70px)]">
         <LoadingSpinner />
@@ -30,7 +37,7 @@ export default function FilteredPropertiesList({
   }
   if (error) toast.error("Failed to get the data, try again.");
 
-  const properties = data as Property[];
+  const properties = data?.pages.flat() as Property[];
 
   if (properties.length === 0) {
     return (
@@ -40,10 +47,15 @@ export default function FilteredPropertiesList({
     );
   }
   return (
-    <div className="container mx-auto my-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-      {properties.map((property) => {
-        return <PropertyCard key={property.id} property={property} />;
-      })}
+    <div className="relative">
+      <div className="container mx-auto my-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {properties.map((property) => {
+          return <PropertyCard key={property.id} property={property} />;
+        })}
+        <div ref={ref} className="w-full flex justify-center items-center ">
+          {isFetchingNextPage && <LoadingSpinner />}
+        </div>
+      </div>
     </div>
   );
 }
