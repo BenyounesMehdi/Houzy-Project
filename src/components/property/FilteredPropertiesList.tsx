@@ -24,7 +24,6 @@ export default function FilteredPropertiesList({
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    console.log("in view: ", inView);
     if (inView) fetchNextPage();
   }, [fetchNextPage, inView]);
 
