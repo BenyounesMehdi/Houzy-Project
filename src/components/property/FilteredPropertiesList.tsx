@@ -46,12 +46,14 @@ export default function FilteredPropertiesList({
     );
   }
   return (
-    <div className="relative">
-      <div className="container mx-auto my-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {properties.map((property) => {
-          return <PropertyCard key={property.id} property={property} />;
-        })}
-        <div ref={ref} className="w-full flex justify-center items-center ">
+    <div>
+      <div className="container mx-auto my-5 p-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {properties.map((property) => {
+            return <PropertyCard key={property.id} property={property} />;
+          })}
+        </div>
+        <div ref={ref} className="w-full flex justify-center items-center mt-5">
           {isFetchingNextPage && <LoadingSpinner />}
         </div>
       </div>
