@@ -19,6 +19,8 @@ export const deleteProperty = async (propertyId: string) => {
       },
     });
     revalidatePath("/my-properties");
+    revalidatePath("/rent");
+    revalidatePath("/sell");
     const state: State = {
       status: "success",
       message: "The property has been deleted successfully.",

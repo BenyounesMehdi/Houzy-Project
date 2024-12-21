@@ -78,6 +78,8 @@ export async function createProperty(
     };
 
     revalidatePath("/my-properties");
+    revalidatePath("/rent");
+    revalidatePath("/sell");
     return state;
   } catch {
     const state: State = {
