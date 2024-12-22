@@ -43,8 +43,6 @@ export default function PropertyForm({
   const [state, formAction] = useActionState(action, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
-  console.log("property: ", property);
-
   useEffect(() => {
     if (state?.status === "success") {
       toast.success(state.message);
