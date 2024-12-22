@@ -53,7 +53,7 @@ export default function SearchSection({
               className="w-full justify-between font-normal"
             >
               {selectedCity
-                ? cities.find((city) => city.value === selectedCity)?.label
+                ? allCities.find((city) => city.value === selectedCity)?.label
                 : "City"}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>

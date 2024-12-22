@@ -10,12 +10,13 @@ import {
   Phone,
   Twitter,
 } from "lucide-react";
+import { auth } from "@clerk/nextjs/server";
 
-export function Footer() {
+export async function Footer() {
+  const { userId } = await auth();
   return (
     <footer className="bg-muted">
       <div className="container mx-auto px-4 py-12 md:py-16">
-        {/* Newsletter Section */}
         <div className="mb-12 border-b pb-12">
           <div className="max-w-xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4">
@@ -35,9 +36,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company Info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           <div>
             <h4 className="font-bold text-lg mb-4">About Houzy</h4>
             <p className="text-muted-foreground mb-4">
@@ -60,7 +59,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
@@ -74,87 +72,31 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/rent"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  About Us
+                  Rent
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/sell"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Featured Properties
+                  Sell
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href={`${userId ? "/add-property" : "/sign-in"}`}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   Add Property
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* Property Types */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">Property Types</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Apartments
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Houses
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Villas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Commercial
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Office Spaces
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social Links */}
           <div>
             <h4 className="font-bold text-lg mb-4">Follow Us</h4>
             <p className="text-muted-foreground mb-4">
@@ -185,7 +127,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Houzy. All rights reserved.
