@@ -10,9 +10,9 @@ export default async function Page({
 }) {
   const id = (await params).id;
   const data = await getProperty(id);
-  const property = data as Property;
 
-  if (!property) notFound();
+  if (!data) notFound();
+  const property = data as Property;
 
   return (
     <div className="container mx-auto my-10 px-5">
