@@ -13,8 +13,8 @@ export default function PropertyImagesUploader({
   error,
   images,
 }: PropertyImagesUploaderProps) {
-  const [propertyImages, setPropertyImages] = useState<string[] | null>(
-    images ? images : null
+  const [propertyImages, setPropertyImages] = useState<string[] | []>(
+    images ? images : []
   );
 
   return (
