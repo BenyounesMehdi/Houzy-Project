@@ -22,6 +22,7 @@ import { useEffect, useRef } from "react";
 import { useActionState } from "react";
 import { toast } from "sonner";
 import { updateProperty } from "@/utils/actions/update-property";
+import { useRouter } from "next/navigation";
 
 type PropertyFormProps = {
   property?: Property;
@@ -39,6 +40,7 @@ export default function PropertyForm({
   };
 
   const action = actionName === "create" ? createProperty : updateProperty;
+  const router = useRouter();
 
   const [state, formAction] = useActionState(action, initialState);
   const formRef = useRef<HTMLFormElement>(null);
@@ -46,7 +48,7 @@ export default function PropertyForm({
   useEffect(() => {
     if (state?.status === "success") {
       toast.success(state.message);
-      formRef.current?.reset();
+      router.push(`/property/${property?.id}`);
     } else if (state?.status === "error") {
       toast.error(state.message);
     }
