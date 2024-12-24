@@ -1,5 +1,4 @@
 import PropertyForm from "@/components/property/PropertyForm";
-import { updateProperty } from "@/utils/actions/update-property";
 import { getProperty } from "@/utils/data/property/get-property";
 import { Property } from "@/utils/types/types";
 
