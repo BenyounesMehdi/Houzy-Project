@@ -29,5 +29,10 @@ export async function GET() {
     });
   }
 
-  return NextResponse.redirect("http://localhost:3000");
+  const redirectUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://houzy-project.vercel.app/"
+      : "http://localhost:3000";
+
+  return NextResponse.redirect(redirectUrl);
 }
