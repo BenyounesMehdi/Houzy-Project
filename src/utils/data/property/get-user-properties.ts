@@ -25,7 +25,7 @@ export const getUserProperties = nextCache(
         },
       });
       return data;
-    } catch (error) {
+    } catch {
       throw new Error("Failed to get the properties.");
     }
   },

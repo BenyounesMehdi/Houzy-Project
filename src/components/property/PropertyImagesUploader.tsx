@@ -31,7 +31,7 @@ export default function PropertyImagesUploader({
           setPropertyImages(res.map((image) => image.url));
           toast.success("Images uploaded successfully!");
         }}
-        onUploadError={(e) => {
+        onUploadError={() => {
           toast.error("Something went wrong, try again.");
         }}
       />

@@ -36,8 +36,8 @@ export const getPropertiesByTypeAndCity = nextCache(
       });
 
       return data;
-    } catch (e: any) {
-      throw new Error(`Failed to get the properties: ${e.message}`);
+    } catch {
+      throw new Error("Failed to get the properties");
     }
   },
   ["properties"],

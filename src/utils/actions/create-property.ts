@@ -7,7 +7,7 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 export async function createProperty(
-  prevState: any,
+  prevState: unknown,
   formData: FormData
 ): Promise<State | null> {
   const { userId } = await auth();

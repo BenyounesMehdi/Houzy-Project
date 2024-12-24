@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPropertiesByTypeAndCity } from "../data/property/get-properties-by-type-city";
 
 const PAGE_SIZE = 8;

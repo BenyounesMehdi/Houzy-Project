@@ -2,12 +2,12 @@
 
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { State } from "../types/types";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { propertySchema } from "../zod/zodSchema";
 import prisma from "@/lib/db";
 
 export const updateProperty = async (
-  prevState: any,
+  prevState: unknown,
   formData: FormData
 ): Promise<State | null> => {
   const { userId } = await auth();
@@ -22,7 +22,7 @@ export const updateProperty = async (
 
   try {
     parsedImages = imagesData ? JSON.parse(imagesData as string) : [];
-  } catch (error) {
+  } catch {
     return {
       status: "error",
       message: "Invalid image format",
@@ -87,11 +87,11 @@ export const updateProperty = async (
     revalidatePath("/rent");
     revalidatePath("/sell");
     return state;
-  } catch (e) {
+  } catch {
     const state: State = {
       status: "error",
       message: "Failed to update your property, please try again",
     };
     return state;
   }
-  };
+};

@@ -26,7 +26,7 @@ export const deleteProperty = async (propertyId: string) => {
       message: "The property has been deleted successfully.",
     };
     return state;
-  } catch (error) {
+  } catch {
     const state: State = {
       status: "error",
       message: "Failed to delete the property.",
