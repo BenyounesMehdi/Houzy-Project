@@ -52,7 +52,7 @@ export default function PropertyForm({
     } else if (state?.status === "error") {
       toast.error(state.message);
     }
-  }, [state]);
+  }, [state, property?.id, router]);
 
   return (
     <div className="container mx-auto my-10 px-2">

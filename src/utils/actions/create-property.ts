@@ -22,7 +22,7 @@ export async function createProperty(
 
   try {
     parsedImages = imagesData ? JSON.parse(imagesData as string) : [];
-  } catch (error) {
+  } catch {
     return {
       status: "error",
       message: "Invalid image format",
