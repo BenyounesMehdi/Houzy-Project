@@ -48,7 +48,7 @@ export default function PropertyForm({
   useEffect(() => {
     if (state?.status === "success") {
       toast.success(state.message);
-      router.push(`/property/${property?.id}`);
+      if (actionName !== "create") router.push(`/property/${property?.id}`);
     } else if (state?.status === "error") {
       toast.error(state.message);
     }

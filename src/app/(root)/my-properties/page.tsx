@@ -18,7 +18,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="container mx-auto my-10 px-2">
+    <div className="container mx-auto my-5 p-5">
       <p className="text-3xl font-semibold tracking-tight">My properties</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {userProperties.map((property) => {
