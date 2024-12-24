@@ -106,7 +106,13 @@ export default function SearchSection({
         </Select>
       </div>
 
-      <Button className="block sm:hidden p-2 rounded-full text-white">
+      <Button
+        className="block sm:hidden p-2 rounded-full text-white"
+        onClick={() => {
+          setCity(selectedCity);
+          setPropertyType(selectedPropertyType);
+        }}
+      >
         <Search />
       </Button>
       <Button
